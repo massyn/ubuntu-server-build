@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ ! -f /etc/server-build.sh ]]; then
         echo "You need to run config.sh first"
