@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # CronWrapper
 # Stick this in front of the command on a crontab.  It will keep a log of what happened
