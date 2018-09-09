@@ -54,7 +54,7 @@ question admin_email "What is your admin email address"
 question wwwroot "Where would you like to store the websites" /wwwroot
 question backup_path "Where would you like to store the backups" /root/backup
 question snapshots "How many backups would you like to retain" 7
-#question app_path "Where would you like to store the application" /usr/bin/server-build
-#question log_path "Where would you like to store the system logs" /var/log/server-build
+question app_path "Where would you like to store the application" /usr/bin/server-build
+question log_path "Where would you like to store the system logs" /var/log/server-build
 
 chmod +x $CONFIG
