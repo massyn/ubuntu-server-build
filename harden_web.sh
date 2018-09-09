@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function UpdateParameter {
 	file=$1
