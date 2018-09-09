@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # == we must run as root
 if [[ `whoami` != 'root' ]]; then
