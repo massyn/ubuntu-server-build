@@ -8,5 +8,5 @@ fi
 
 apt-get update
 apt-get upgrade -y
-apt-get autoremove
+apt-get autoremove -y
 reboot
