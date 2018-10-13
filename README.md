@@ -10,7 +10,7 @@ bash install.sh
 To install a web server, execute
 ```bash
 bash setup_web.sh
-bash hardeb_web.sh
+bash harden_web.sh
 ```
 To install a database, execute
 ```bash
