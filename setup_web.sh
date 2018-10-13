@@ -34,6 +34,11 @@ else
         echo "Group $wwwgroup exists"
 fi
 
+# == delete the 000-default.conf file (it messes up what we're trying to do)
+if [[ -f /etc/apache2/sites-enabled/000-default.conf ]]; then
+	echo "Removing /etc/apache2/sites-enabled/000-default.conf"
+	rm /etc/apache2/sites-enabled/000-default.conf
+fi
 
 # == check if apache is installed... It not, install it
 dpkg -l apache2 > /dev/null 2>&1
@@ -91,7 +96,8 @@ if [[ ! -z $site ]]; then
 	# == create the config for this site
 	config=/etc/apache2/sites-enabled/$site.conf
 
-	echo "<VirtualHost $site:80>" > $config
+	echo "<VirtualHost *:80>" > $config
+	echo "ServerName $site" >> $config
         echo "ServerAdmin webmaster@localhost" >> $config
         echo "DocumentRoot $wwwroot/$site/www" >> $config
         echo "ErrorLog $wwwroot/$site/logs/error.log" >> $config
@@ -113,8 +119,8 @@ if [[ ! -z $site ]]; then
 	if [[ -f "/etc/letsencrypt/live/$site/fullchain.pem" ]]; then
 		echo " - Configuring SSL..."
 
-		echo "<VirtualHost $site:443>" >> $config
-                echo "ServerName $site:443" >> $config
+		echo "<VirtualHost *:443>" >> $config
+                echo "ServerName $site" >> $config
                 echo "ServerAdmin webmaster@localhost" >> $config
 		echo "DocumentRoot $wwwroot/$site/www" >> $config
         	echo "ErrorLog $wwwroot/$site/logs/error.log" >> $config
