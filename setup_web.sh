@@ -103,7 +103,7 @@ if [[ ! -z $site ]]; then
 	# == create the config for this site
 	config=/etc/apache2/sites-enabled/$site.conf
 
-	echo "<VirtualHost *:80>" > $config
+	echo "<VirtualHost $site:80>" > $config
 	echo "ServerName $site" >> $config
         echo "ServerAdmin webmaster@localhost" >> $config
         echo "DocumentRoot $wwwroot/$site/www" >> $config
@@ -126,7 +126,7 @@ if [[ ! -z $site ]]; then
 	if [[ -f "/etc/letsencrypt/live/$site/fullchain.pem" ]]; then
 		echo " - Configuring SSL..."
 
-		echo "<VirtualHost *:443>" >> $config
+		echo "<VirtualHost $site:443>" >> $config
                 echo "ServerName $site" >> $config
                 echo "ServerAdmin webmaster@localhost" >> $config
 		echo "DocumentRoot $wwwroot/$site/www" >> $config
