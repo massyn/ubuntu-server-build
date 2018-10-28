@@ -40,6 +40,13 @@ if [[ -f /etc/apache2/sites-enabled/000-default.conf ]]; then
 	rm /etc/apache2/sites-enabled/000-default.conf
 fi
 
+# == create the new default config file
+if [[ -f /etc/apache2/sites-enabled/server-build.conf ]]; then
+	rm /etc/apache2/sites-enabled/server-build.conf
+fi
+echo "ServerTokens Prod" >> /etc/apache2/sites-enabled/server-build.conf
+echo "ServerSignature Off" >> /etc/apache2/sites-enabled/server-build.conf
+
 # == check if apache is installed... It not, install it
 dpkg -l apache2 > /dev/null 2>&1
 if [[ $? -ne 0 ]]; then
