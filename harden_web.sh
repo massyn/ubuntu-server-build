@@ -20,7 +20,7 @@ UpdateParameter /etc/apache2/conf-enabled/security.conf "Header always append X-
 UpdateParameter /etc/apache2/conf-enabled/security.conf "Header set X-Content-Type-Options" nosniff
 UpdateParameter /etc/apache2/conf-enabled/security.conf "Header set X-XSS-Protection" "\"1; mode=block\""
 UpdateParameter /etc/apache2/conf-enabled/security.conf "Header set Strict-Transport-Security" "\"max-age=31536000; includeSubDomains; preload\""
-UpdateParameter /etc/apache2/conf-enabled/security.conf "Header set Content-Security-Policy" "\"default-src https: 'unsafe-inline'\""
+UpdateParameter /etc/apache2/conf-enabled/security.conf "Header set Content-Security-Policy" "\"default-src https: 'unsafe-inline' 'unsafe-eval'\""
 #UpdateParameter /etc/apache2/conf-enabled/security.conf "Header set add_header Referrer-Policy" "same-origin"
 
 # find the php.ini file
