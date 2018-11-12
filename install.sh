@@ -7,11 +7,9 @@ if [[ `whoami` != 'root' ]]; then
 fi
 
 # == setup the config file first, so we know where things go
-bash config.sh
 
 if [[ ! -f /etc/server-build.sh ]]; then
-        echo "You need to run config.sh first"
-        exit 1
+        bash config.sh
 fi
 . /etc/server-build.sh
 
