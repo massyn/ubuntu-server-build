@@ -6,7 +6,6 @@ if [[ `whoami` != 'root' ]]; then
         exit 1
 fi
 
-apt-get update
-apt-get upgrade -y
-apt-get autoremove -y
+DEBIAN_FRONTEND=noninteractive apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
 reboot
