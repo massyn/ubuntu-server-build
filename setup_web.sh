@@ -9,6 +9,7 @@ fi
 . /etc/server-build.sh
 
 site=$1
+option=$2
 
 wwwuser=www-data
 wwwgroup=webmasters
@@ -159,13 +160,17 @@ if [[ ! -z $site ]]; then
         echo "Require all granted" >> $config
 	echo "</Directory>" >> $config
 
-	# == restart the web server
-	echo "Restarting apache..."
-	service apache2 restart	
-	if [[ $? -eq 0 ]]; then
-		echo " - success"
+	if [[ $option != '-x' ]]; then
+		# == restart the web server
+		echo "Restarting apache..."
+		service apache2 restart	
+		if [[ $? -eq 0 ]]; then
+			echo " - success"
+		else
+			echo " ** FAILED **"
+			systemctl status apache2.service
+		fi
 	else
-		echo " ** FAILED **"
-		systemctl status apache2.service
+		echo "Apache was not restarted because you gave the -x option"
 	fi
 fi
