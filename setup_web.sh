@@ -45,8 +45,6 @@ fi
 if [[ -f /etc/apache2/sites-enabled/server-build.conf ]]; then
 	rm /etc/apache2/sites-enabled/server-build.conf
 fi
-echo "ServerTokens Prod" >> /etc/apache2/sites-enabled/server-build.conf
-echo "ServerSignature Off" >> /etc/apache2/sites-enabled/server-build.conf
 
 # == check if apache is installed... It not, install it
 dpkg -l apache2 > /dev/null 2>&1
@@ -78,6 +76,9 @@ if [[ $? -ne 0 ]]; then
 
 	# == install perl modules for perl applications
 	apt-get install libcgi-pm-perl -y
+	
+	# == call our hardening web script, just to make sure things are tight
+	harden_web.sh
 fi
 
 if [[ ! -d "$wwwroot" ]]; then
