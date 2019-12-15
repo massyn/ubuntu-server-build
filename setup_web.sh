@@ -156,7 +156,7 @@ if [[ ! -z $site ]]; then
 
 	echo "<Directory $wwwroot/$site/>" >> $config
         echo "Options +ExecCGI -Indexes -MultiViews +SymLinksIfOwnerMatch" >> $config
-        echo "AddHandler cgi-script .pl .cgi" >> $config
+        echo "AddHandler cgi-script .pl .cgi .py" >> $config
         echo "AllowOverride All" >> $config
         echo "Require all granted" >> $config
 	echo "</Directory>" >> $config
