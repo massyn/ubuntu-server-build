@@ -138,10 +138,13 @@ if [[ ! -z $site ]]; then
                 echo "SSLCertificateFile /etc/letsencrypt/live/$site/cert.pem" >> $config
                 echo "SSLCertificateKeyFile /etc/letsencrypt/live/$site/privkey.pem" >> $config
                 echo "SSLCertificateChainFile /etc/letsencrypt/live/$site/fullchain.pem" >> $config
-                echo "SSLProtocol all -SSLv2 -SSLv3" >> $config
+		# 2020.03.15 - enable TLS1.3
+                #echo "SSLProtocol all -SSLv2 -SSLv3" >> $config
+		echo "SSLProtocol -all +TLSv1.3 +TLSv1.2">> $config
                 echo "SSLHonorCipherOrder on" >> $config
-                echo "SSLCipherSuite \"EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4\"" >> $config
-
+                #echo "SSLCipherSuite \"EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4\"" >> $config
+		echo "SSLCipherSuite    TLSv1.3   TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256" >> $config
+		echo "SSLCipherSuite    SSL       ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA25" >> $config
                 echo "<FilesMatch \"\.(cgi|shtml|phtml|php|pl)\$\">" >> $config
                 echo "SSLOptions +StdEnvVars" >> $config
                 echo "</FilesMatch>" >> $config
