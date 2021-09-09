@@ -10,18 +10,11 @@ fi
 
 site=$1
 
-# == install git if its not yet installed
-dpkg -l git > /dev/null 2>&1
-if [[ $? -ne 0 ]]; then
-        echo Installing Apache...
-        apt-get update
-	apt-get install git -y
-fi
-
 # == install lets encrypt if it's not yet installed
-if [[ ! -d /usr/local/letsencrypt ]]; then
-        cd /usr/local/
-        git clone https://github.com/letsencrypt/letsencrypt
+dpkg -l certbot > /dev/null 2>&1
+if [[ $? -ne 0 ]]; then
+	echo Installing certbot...
+	apt-get install certbot -y
 fi
 
 if [[ $site != '' ]]; then
@@ -29,7 +22,7 @@ if [[ $site != '' ]]; then
 
         service apache2 stop
 
-        /usr/local/letsencrypt/letsencrypt-auto certonly --standalone -d $site --email $admin_email --renew-by-default
+        /usr/bin/certbot certonly --standalone -d $site --email $admin_email --renew-by-default
 
         service apache2 start
 else
