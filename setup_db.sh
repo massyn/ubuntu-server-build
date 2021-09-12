@@ -39,8 +39,9 @@ if [[ ! -z $db ]]; then
 
         user=$db        # set the user the same as the db name
 
-        echo "grant usage on *.* to $user@localhost identified by '$passdb'" | mysql
-        echo "grant all privileges on $db.* to $user@localhost" | mysql
+        echo "CREATE USER $user@'%' IDENTIFIED BY '$passdb'" |mysql
+        echo "GRANT ALL PRIVILEGES ON $db.* TO $user@'%' WITH GRANT OPTION" | mysql
+        echo "FLUSH PRIVILEGES" | mysql
 
         echo "Database name : $db"
         echo "Username      : $user"
