@@ -36,6 +36,7 @@ do
         chmod 750 $app_path/$name
 done
 
+apt-get update -y
 bash install_crontab.sh
 
 echo "export PATH=\$PATH:$app_path" >> /etc/profile
