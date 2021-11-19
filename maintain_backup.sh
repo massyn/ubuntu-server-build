@@ -55,7 +55,7 @@ do
 
 # == find all the web folders
 
-for web in $(ls $wwwroot); do
+for web in $( ls -l $wwwroot | grep -v " -> " |awk {'print $9'} ); do
         echo Web site = $web
 
         snapshot www-$web tar.gz
