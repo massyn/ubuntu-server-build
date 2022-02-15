@@ -6,8 +6,8 @@ if [[ `whoami` != 'root' ]]; then
         exit 1
 fi
 
-if [[ -f /usr/local/letsencrypt/letsencrypt-auto ]]; then
+if [[ -f /usr/bin/letsencrypt ]]; then
         /usr/sbin/service apache2 stop
-        /usr/local/letsencrypt/letsencrypt-auto renew
+        /usr/bin/letsencrypt renew
         /usr/sbin/service apache2 start
 fi
